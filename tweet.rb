@@ -23,10 +23,10 @@ class Tweet
     tweet = nil
     mails =  gmail.inbox.emails(:unread,:on => Date.today).each do |mail|
       #受信ボックスから、その日に届いた未読のものをチェック
-      if mail.message.to.include?("************@freeml.com")
+      if mail.to.include?("************@freeml.com")
         #あるメーリスから送られてきたものだったらツイートを作成
         #(メーリスからの場合は送信先がメーリスのアドレスとなっている)
-        time = Time.parse(mail.message.date.to_s)
+        time = Time.parse(mail.date.to_s)
         time_tweet = time.strftime("%m月%d日%H:%M")
         tweet = "#{time_tweet}に新規メーリスが投稿されました！ご確認ください。"
 #        mail.read!
